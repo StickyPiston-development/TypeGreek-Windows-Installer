@@ -13,10 +13,10 @@ del -f create_shortcut.vbs
 
 rem Download fresh files
 
-curl -A "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64)" -L "https://github.com/MrStickyPiston/typegreek-windows/blob/installer/TypeGreek_EN.exe?raw=true" -o typegreek_EN.exe
-curl -A "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64)" -L "https://github.com/MrStickyPiston/typegreek-windows/blob/installer/TypeGrieks_NL.exe?raw=true" -o typegreek_NL.exe
+curl -A "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64)" -L "https://github.com/StickyPiston-development/TypeGreek-Windows-Installer/blob/installer/TypeGreek_EN.exe?raw=true" -o typegreek_EN.exe
+curl -A "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64)" -L "https://github.com/StickyPiston-development/TypeGreek-Windows-Installer/blob/installer/TypeGrieks_NL.exe?raw=true" -o typegreek_NL.exe
 
-curl -A "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64)" -L "https://raw.githubusercontent.com/MrStickyPiston/typegreek-windows/installer/create_shortcut.vbs" -o "create_shortcut.vbs"
+curl -A "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64)" -L "https://raw.githubusercontent.com/StickyPiston-development/TypeGreek-Windows-Installer/installer/create_shortcut.vbs" -o "create_shortcut.vbs"
 
 rem Remove and readd start menu shortcuts
 
@@ -40,7 +40,7 @@ rem Register auto updater
 
 cd %appdata%\Microsoft\Windows\Start Menu\Programs\Startup
 del TypeGreek_windows_updater.bat
-curl -A "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64)" -L "https://raw.githubusercontent.com/MrStickyPiston/typegreek-windows/installer/updater.bat" -o TypeGreek_windows_updater.bat
+curl -A "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64)" -L "https://raw.githubusercontent.com/StickyPiston-development/TypeGreek-Windows-Installer/installer/updater.bat" -o TypeGreek_windows_updater.bat
 
 rem Notify the user
 
