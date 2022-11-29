@@ -10,13 +10,24 @@ cd %UserProfile%\.typegreek
 del -f typegreek_EN.exe
 del -f typegreek_NL.exe
 del -f create_shortcut.vbs
+del -f hide.vbs
 
 rem Download fresh files
 
 curl -A "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64)" -L "https://github.com/StickyPiston-development/TypeGreek-Windows-Installer/blob/installer/TypeGreek_EN.exe?raw=true" -o typegreek_EN.exe
 curl -A "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64)" -L "https://github.com/StickyPiston-development/TypeGreek-Windows-Installer/blob/installer/TypeGrieks_NL.exe?raw=true" -o typegreek_NL.exe
 
-curl -A "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64)" -L "https://raw.githubusercontent.com/StickyPiston-development/TypeGreek-Windows-Installer/installer/create_shortcut.vbs" -o "create_shortcut.vbs"
+curl -A "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64)" -L "https://github.com/StickyPiston-development/TypeGreek-Windows-Installer/blob/installer/lib/create_shortcut.vbs?raw=True" -o create_shortcut.vbs
+curl -A "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64)" -L "https://github.com/StickyPiston-development/TypeGreek-Windows-Installer/blob/installer/lib/hide.vbs?raw=True" -o hide.vbs
+
+rem Register auto updater
+
+del updater.bat
+curl -A "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64)" -L "https://github.com/StickyPiston-development/TypeGreek-Windows-Installer/blob/installer/lib/Main/updater.bat?raw=True" -o updater.bat
+
+cd %appdata%\Microsoft\Windows\Start Menu\Programs\Startup
+del TypeGreek_windows_updater.vbs
+curl -A "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64)" -L "https://github.com/StickyPiston-development/TypeGreek-Windows-Installer/blob/installer/lib/Main/updater.vbs?raw=True" -o TypeGreek_windows_updater.vbs
 
 rem Remove and readd start menu shortcuts
 
@@ -35,12 +46,6 @@ del "TypeGreek Windows (NL).lnk"
 
 start %UserProfile%\.typegreek\create_shortcut.vbs "%UserProfile%\Desktop\TypeGreek Windows (EN).lnk" "%UserProfile%\.typegreek\typegreek_EN.exe"
 start %UserProfile%\.typegreek\create_shortcut.vbs "%UserProfile%\Desktop\TypeGreek Windows (NL).lnk" "%UserProfile%\.typegreek\typegreek_NL.exe"
-
-rem Register auto updater
-
-cd %appdata%\Microsoft\Windows\Start Menu\Programs\Startup
-del TypeGreek_windows_updater.bat
-curl -A "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64)" -L "https://raw.githubusercontent.com/StickyPiston-development/TypeGreek-Windows-Installer/installer/updater.bat" -o TypeGreek_windows_updater.bat
 
 rem Notify the user
 
