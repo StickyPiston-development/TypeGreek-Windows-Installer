@@ -12,13 +12,15 @@
 
 !define INSTALLSIZE 2182
  
+BrandingText "TypeGreek installer"
+
 RequestExecutionLevel user
  
 InstallDir "$PROFILE\.typegreek"
  
 LicenseData "license.txt"
 
-Name "${COMPANYNAME} - ${APPNAME}"
+Name "${APPNAME}"
 Icon "icon.ico"
 outFile "TypeGreek-installer.exe"
  
