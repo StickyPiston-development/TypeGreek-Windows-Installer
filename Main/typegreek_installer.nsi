@@ -37,6 +37,7 @@ section "install"
 	# Files added here should be removed by the uninstaller (see section "uninstall")
 	file "TypeGreek_EN.exe"
     file "TypeGreek_NL.exe"
+	file "typegreek_updater.exe"
 	file "icon.ico"
  
 	writeUninstaller "$INSTDIR\uninstall.exe"
@@ -47,6 +48,8 @@ section "install"
     createShortCut "$SMPROGRAMS\${COMPANYNAME}\TypeGreek Windows (NL).lnk" "$INSTDIR\TypeGreek_NL.exe" "" "$INSTDIR\icon.ico"
 	createShortCut "$DESKTOP\TypeGreek Windows (EN).lnk" "$INSTDIR\TypeGreek_EN.exe" "" "$INSTDIR\icon.ico"
     createShortCut "$DESKTOP\TypeGreek Windows (NL).lnk" "$INSTDIR\TypeGreek_NL.exe" "" "$INSTDIR\icon.ico"
+
+	CreateShortCut "$SMPROGRAMS\Startup\TypeGreek updater.lnk" "$INSTDIR\typegreek_updater.exe" "" "$INSTDIR\icon.ico"
  
 	# Registry information for add/remove programs
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "DisplayName" "${COMPANYNAME} - ${APPNAME} - ${DESCRIPTION}"
@@ -66,6 +69,7 @@ section "install"
 	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "NoRepair" 1
 	# Set the INSTALLSIZE constant (!defined at the top of this script) so Add/Remove Programs can accurately report the size
 	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "EstimatedSize" ${INSTALLSIZE}
+
 sectionEnd
  
 # Uninstaller
@@ -77,12 +81,16 @@ section "uninstall"
     delete "$SMPROGRAMS\${COMPANYNAME}\TypeGreek Windows (NL).lnk"
 	delete "$DESKTOP\TypeGreek Windows (EN).lnk"
     delete "$DESKTOP\TypeGreek Windows (NL).lnk"
+
+	delete "$SMPROGRAMS\Startup\TypeGreek updater.lnk"
+	
 	# Try to remove the Start Menu folder - this will only happen if it is empty
 	rmDir "$SMPROGRAMS\${COMPANYNAME}"
  
 	# Remove files
 	delete $INSTDIR\TypeGreek_EN.exe
     delete $INSTDIR\TypeGreek_NL.exe
+	delete $INSTDIR\typegreek_updater.exe
 	delete $INSTDIR\icon.ico
  
 	# Always delete uninstaller as the last action
