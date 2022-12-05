@@ -7,7 +7,7 @@
   },
   {
    "optionDest": "filenames",
-   "value": "C:/Users/anton/Documents/GitHub/TypeGreek-Windows-Installer/Main/typegreek_updater.py"
+   "value": "C:/Users/anton/Documents/GitHub/TypeGreek-Windows-Installer/Main/PyInstaller/typegreek_updater.py"
   },
   {
    "optionDest": "onefile",
