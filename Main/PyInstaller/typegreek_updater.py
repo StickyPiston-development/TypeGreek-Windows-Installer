@@ -16,7 +16,6 @@ UpdateVersion = str(uf.read().decode("utf-8"))
 
 if version == UpdateVersion:
 	print("The program is up to date on version " + version)
-	exit()
 else:
 	print("The program needs to be updated.\n\nCurrent version: " + version + "\nUp to date version: " + UpdateVersion)
 
