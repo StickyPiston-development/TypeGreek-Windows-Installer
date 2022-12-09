@@ -4,7 +4,7 @@
 
 !define VERSIONMAJOR 1
 !define VERSIONMINOR 6
-!define VERSIONBUILD 2
+!define VERSIONBUILD 3
 
 !define HELPURL "https://github.com/StickyPiston-development/typegreek-windows/issues/new" # "Support Information" link
 !define UPDATEURL "https://stickypiston-development.github.io/typegreek-windows/download.html" # "Product Updates" link
