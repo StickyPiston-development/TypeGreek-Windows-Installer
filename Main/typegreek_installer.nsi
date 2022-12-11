@@ -38,7 +38,9 @@ section "TypeGreek Windows"
 	# Files added here should be removed by the uninstaller (see section "uninstall")
 	file "TypeGreek_EN.exe"
     file "TypeGreek_NL.exe"
+
 	file "icon.ico"
+	file "disabled_icon.ico"
 
 	writeUninstaller "$INSTDIR\uninstall.exe"
 
@@ -97,7 +99,9 @@ section "uninstall"
 	delete $INSTDIR\TypeGreek_EN.exe
     delete $INSTDIR\TypeGreek_NL.exe
 	delete $INSTDIR\typegreek_updater.exe
+
 	delete $INSTDIR\icon.ico
+	delete $INSTDIR\disabled_icon.ico
 
 	delete $INSTDIR\diacritics.dat
 	delete $INSTDIR\version.dat
