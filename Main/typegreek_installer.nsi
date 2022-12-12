@@ -11,6 +11,7 @@
 !define ABOUTURL "https://stickypiston-development.github.io/typegreek-windows/index.html" # "Publisher" link
 
 !define INSTALLSIZE 8402700
+!define INSTALLSIZE_BETA 2502700
 
 BrandingText "TypeGreek installer"
 
@@ -80,11 +81,49 @@ section "TypeGreek Windows Updater"
 	file "typegreek_updater.exe"
 	CreateShortCut "$SMPROGRAMS\Startup\TypeGreek updater.lnk" "$INSTDIR\typegreek_updater.exe" "" "$INSTDIR\icon.ico"
 sectionEnd
+
+section /o "TypeGreek Windows Beta"
+	setOutPath "$INSTDIR\beta"
+	file "AutoHotKeyU32.exe"
+	file "AutoHotKeyU64.exe"
+	file "typegreek_EN.ahk"
+	file "typegreek_NL.ahk"
+
+	file "icon.ico"
+	file "disabled_icon.ico"
+
+	writeUninstaller "$INSTDIR\uninstall_beta.exe"
+
+	createShortCut "$SMPROGRAMS\${COMPANYNAME}\TypeGreek Windows Beta (64 Bit).lnk" "$INSTDIR\beta\AutoHotKeyU64.exe" "typegreek_EN.ahk" "$INSTDIR\icon.ico"
+    createShortCut "$SMPROGRAMS\${COMPANYNAME}\TypeGreek Windows Beta (32 Bit).lnk" "$INSTDIR\beta\AutoHotKeyU32.exe" "typegreek_EN.ahk" "$INSTDIR\icon.ico"
+	createShortCut "$DESKTOP\TypeGreek Windows Beta (64 Bit).lnk" "$INSTDIR\beta\AutoHotKeyU64.exe" "typegreek_EN.ahk" "$INSTDIR\icon.ico"
+    createShortCut "$DESKTOP\TypeGreek Windows Beta (32 Bit).lnk" "$INSTDIR\beta\AutoHotKeyU64.exe" "typegreek_EN.ahk" "$INSTDIR\icon.ico"
+
+	WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME} Beta" "DisplayName" "${APPNAME} Beta ${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONBUILD}"
+	WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME} Beta" "UninstallString" "$\"$INSTDIR\uninstall_beta.exe$\""
+	WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME} Beta" "QuietUninstallString" "$\"$INSTDIR\uninstall_beta.exe$\" /S"
+	WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME} Beta" "InstallLocation" "$\"$INSTDIR\beta$\""
+	WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME} Beta" "DisplayIcon" "$\"$INSTDIR\beta\icon.ico$\""
+	WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME} Beta" "Publisher" "${COMPANYNAME}"
+	WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME} Beta" "HelpLink" "$\"${HELPURL}$\""
+	WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME} Beta" "URLUpdateInfo" "$\"${UPDATEURL}$\""
+	WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME} Beta" "URLInfoAbout" "$\"${ABOUTURL}$\""
+	WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME} Beta" "DisplayVersion" "${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONBUILD}"
+	WriteRegDWORD HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME} Beta" "VersionMajor" ${VERSIONMAJOR}
+	WriteRegDWORD HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME} Beta" "VersionMinor" ${VERSIONMINOR}
+	# There is no option for modifying or repairing the install
+	WriteRegDWORD HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME} Beta" "NoModify" 1
+	WriteRegDWORD HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME} Beta" "NoRepair" 1
+	# Set the INSTALLSIZE constant (!defined at the top of this script) so Add/Remove Programs can accurately report the size
+	WriteRegDWORD HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME} Beta" "EstimatedSize" ${INSTALLSIZE_BETA}
+sectionEnd
 # Uninstaller
 
-section "uninstall"
+UninstPage components
+UninstPage uninstConfirm
+UninstPage instfiles
 
-	# Remove Start Menu launcher
+section "un.TypeGreek windows"
 	delete "$SMPROGRAMS\${COMPANYNAME}\TypeGreek Windows (EN).lnk"
     delete "$SMPROGRAMS\${COMPANYNAME}\TypeGreek Windows (NL).lnk"
 	delete "$DESKTOP\TypeGreek Windows (EN).lnk"
@@ -92,10 +131,8 @@ section "uninstall"
 
 	delete "$SMPROGRAMS\Startup\TypeGreek updater.lnk"
 	
-	# Try to remove the Start Menu folder - this will only happen if it is empty
 	rmDir "$SMPROGRAMS\${COMPANYNAME}"
 
-	# Remove files
 	delete $INSTDIR\TypeGreek_EN.exe
     delete $INSTDIR\TypeGreek_NL.exe
 	delete $INSTDIR\typegreek_updater.exe
@@ -106,12 +143,40 @@ section "uninstall"
 	delete $INSTDIR\diacritics.dat
 	delete $INSTDIR\version.dat
 
-	# Always delete uninstaller as the last action
 	delete $INSTDIR\uninstall.exe
 
-	# Try to remove the install directory - this will only happen if it is empty
 	rmDir $INSTDIR
 
-	# Remove uninstaller information from the registry
 	DeleteRegKey HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}"
+sectionEnd
+
+section "un.TypeGreek Windows Beta"
+	delete "$SMPROGRAMS\${COMPANYNAME}\TypeGreek Windows Beta (64 Bit).lnk"
+    delete "$SMPROGRAMS\${COMPANYNAME}\TypeGreek Windows Beta (32 Bit).lnk"
+	delete "$DESKTOP\TypeGreek Windows Beta (64 Bit).lnk"
+    delete "$DESKTOP\TypeGreek Windows Beta (32 Bit).lnk"
+
+	delete "$SMPROGRAMS\Startup\TypeGreek Beta updater.lnk"
+
+	rmDir "$SMPROGRAMS\${COMPANYNAME}"
+
+	delete $INSTDIR\beta\AutoHotKeyU64.exe
+	delete $INSTDIR\beta\AutoHotKeyU32.exe
+	delete $INSTDIR\beta\typegreek_EN.ahk
+	delete $INSTDIR\beta\typegreek_NL.ahk
+
+	delete $INSTDIR\beta\typegreek_updater.py
+
+	delete $INSTDIR\beta\icon.ico
+	delete $INSTDIR\beta\disabled_icon.ico
+
+	delete $INSTDIR\beta\diacritics.dat
+	delete $INSTDIR\beta\version.dat
+
+	delete $INSTDIR\uninstall_beta.exe
+
+	rmDir $INSTDIR\beta
+	rmDir $INSTDIR
+
+	DeleteRegKey HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME} Beta"
 sectionEnd
