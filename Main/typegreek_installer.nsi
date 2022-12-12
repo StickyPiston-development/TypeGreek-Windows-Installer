@@ -123,7 +123,7 @@ UninstPage components
 UninstPage uninstConfirm
 UninstPage instfiles
 
-section "un.TypeGreek windows"
+section /o "un.TypeGreek windows"
 	delete "$SMPROGRAMS\${COMPANYNAME}\TypeGreek Windows (EN).lnk"
     delete "$SMPROGRAMS\${COMPANYNAME}\TypeGreek Windows (NL).lnk"
 	delete "$DESKTOP\TypeGreek Windows (EN).lnk"
@@ -150,7 +150,7 @@ section "un.TypeGreek windows"
 	DeleteRegKey HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}"
 sectionEnd
 
-section "un.TypeGreek Windows Beta"
+section /o "un.TypeGreek Windows Beta"
 	delete "$SMPROGRAMS\${COMPANYNAME}\TypeGreek Windows Beta (64 Bit).lnk"
     delete "$SMPROGRAMS\${COMPANYNAME}\TypeGreek Windows Beta (32 Bit).lnk"
 	delete "$DESKTOP\TypeGreek Windows Beta (64 Bit).lnk"
