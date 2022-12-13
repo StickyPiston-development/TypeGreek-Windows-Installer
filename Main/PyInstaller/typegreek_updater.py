@@ -1,7 +1,7 @@
 # usr/bin/python3
 import urllib.request
 
-versionurl = 'https://raw.githubusercontent.com/StickyPiston-development/typegreek-lib/main/version.dat'
+versionurl = 'https://raw.githubusercontent.com/StickyPiston-development/tgw-lib/main/version.dat'
 url_EN = 'https://github.com/StickyPiston-development/tgw-lib/blob/main/typegreek_EN.exe?raw=true'
 url_NL = 'https://github.com/StickyPiston-development/tgw-lib/blob/main/typegreek_NL.exe?raw=true'
 

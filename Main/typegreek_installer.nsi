@@ -74,6 +74,7 @@ section "TypeGreek Windows"
 sectionEnd
 
 section "TypeGreek Windows Updater"
+	setOutPath "$INSTDIR"
 	${IfNot} ${FileExists} `$INSTDIR\*.*`
 		MessageBox MB_OK "Sorry, but you can't install the updater without the main program"
 		Abort "Can not install updater without the program"
@@ -116,6 +117,16 @@ section /o "TypeGreek Windows Beta"
 	WriteRegDWORD HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME} Beta" "NoRepair" 1
 	# Set the INSTALLSIZE constant (!defined at the top of this script) so Add/Remove Programs can accurately report the size
 	WriteRegDWORD HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME} Beta" "EstimatedSize" ${INSTALLSIZE_BETA}
+sectionEnd
+
+section /o "TypeGreek Windows Beta Updater"
+	${IfNot} ${FileExists} `$INSTDIR\Beta\*.*`
+		MessageBox MB_OK "Sorry, but you can't install the beta updater without the beta program"
+		Abort "Can not install beta updater without beta program"
+	${EndIf}
+	setOutPath "$INSTDIR\beta"
+	file "typegreek_beta_updater.exe"
+	CreateShortCut "$SMPROGRAMS\Startup\TypeGreek Beta updater.lnk" "$INSTDIR\beta\typegreek_beta_updater.exe" "" "$INSTDIR\icon.ico"
 sectionEnd
 # Uninstaller
 
@@ -165,7 +176,7 @@ section /o "un.TypeGreek Windows Beta"
 	delete $INSTDIR\beta\typegreek_EN.ahk
 	delete $INSTDIR\beta\typegreek_NL.ahk
 
-	delete $INSTDIR\beta\typegreek_updater.py
+	delete $INSTDIR\beta\typegreek_beta_updater.exe
 
 	delete $INSTDIR\beta\icon.ico
 	delete $INSTDIR\beta\disabled_icon.ico
