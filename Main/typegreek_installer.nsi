@@ -4,14 +4,15 @@
 
 !define VERSIONMAJOR 1
 !define VERSIONMINOR 7
-!define VERSIONBUILD 0
+!define VERSIONBUILD 2
 
 !define HELPURL "https://github.com/StickyPiston-development/typegreek-windows/issues/new" # "Support Information" link
 !define UPDATEURL "https://stickypiston-development.github.io/typegreek-windows/download.html" # "Product Updates" link
 !define ABOUTURL "https://stickypiston-development.github.io/typegreek-windows/index.html" # "Publisher" link
 
-!define INSTALLSIZE 8402700
-!define INSTALLSIZE_BETA 2502700
+!define INSTALLSIZE 0000
+!define INSTALLSIZE_MAIN 8402700
+!define INSTALLSIZE_BETA 8202700
 
 BrandingText "TypeGreek installer"
 
@@ -69,7 +70,7 @@ section "TypeGreek Windows"
 	WriteRegDWORD HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "NoModify" 1
 	WriteRegDWORD HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "NoRepair" 1
 	# Set the INSTALLSIZE constant (!defined at the top of this script) so Add/Remove Programs can accurately report the size
-	WriteRegDWORD HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "EstimatedSize" ${INSTALLSIZE}
+	WriteRegDWORD HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "EstimatedSize" ${INSTALLSIZE_MAIN}
 
 sectionEnd
 
