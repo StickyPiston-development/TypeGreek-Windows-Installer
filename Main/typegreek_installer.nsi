@@ -41,6 +41,9 @@ section "TypeGreek Windows"
 	file "TypeGreek_EN.exe"
     file "TypeGreek_NL.exe"
 
+	file "AutoHotKeyU32.exe"
+	CreateDirectory "$INSTDIR\addons"
+
 	file "icon.ico"
 	file "disabled_icon.ico"
 
@@ -91,15 +94,17 @@ section /o "TypeGreek Windows Beta"
 	file "typegreek_EN.ahk"
 	file "typegreek_NL.ahk"
 
+	CreateDirectory "$INSTDIR\beta\addons"
+
 	file "icon.ico"
 	file "disabled_icon.ico"
 
 	writeUninstaller "$INSTDIR\uninstall_beta.exe"
 
-	createShortCut "$SMPROGRAMS\${COMPANYNAME}\TypeGreek Windows Beta (64 Bit).lnk" "$INSTDIR\beta\AutoHotKeyU64.exe" "typegreek_EN.ahk" "$INSTDIR\icon.ico"
-    createShortCut "$SMPROGRAMS\${COMPANYNAME}\TypeGreek Windows Beta (32 Bit).lnk" "$INSTDIR\beta\AutoHotKeyU32.exe" "typegreek_EN.ahk" "$INSTDIR\icon.ico"
-	createShortCut "$DESKTOP\TypeGreek Windows Beta (64 Bit).lnk" "$INSTDIR\beta\AutoHotKeyU64.exe" "typegreek_EN.ahk" "$INSTDIR\icon.ico"
-    createShortCut "$DESKTOP\TypeGreek Windows Beta (32 Bit).lnk" "$INSTDIR\beta\AutoHotKeyU64.exe" "typegreek_EN.ahk" "$INSTDIR\icon.ico"
+	createShortCut "$SMPROGRAMS\${COMPANYNAME}\TypeGreek Windows Beta (64 Bit).lnk" "$INSTDIR\beta\AutoHotKeyU64.exe" "typegreek_EN.ahk" "$INSTDIR\beta\icon.ico"
+    createShortCut "$SMPROGRAMS\${COMPANYNAME}\TypeGreek Windows Beta (32 Bit).lnk" "$INSTDIR\beta\AutoHotKeyU32.exe" "typegreek_EN.ahk" "$INSTDIR\beta\icon.ico"
+	createShortCut "$DESKTOP\TypeGreek Windows Beta (64 Bit).lnk" "$INSTDIR\beta\AutoHotKeyU64.exe" "typegreek_EN.ahk" "$INSTDIR\beta\icon.ico"
+    createShortCut "$DESKTOP\TypeGreek Windows Beta (32 Bit).lnk" "$INSTDIR\beta\AutoHotKeyU64.exe" "typegreek_EN.ahk" "$INSTDIR\beta\icon.ico"
 
 	WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME} Beta" "DisplayName" "${APPNAME} Beta ${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONBUILD}"
 	WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME} Beta" "UninstallString" "$\"$INSTDIR\uninstall_beta.exe$\""
@@ -152,6 +157,9 @@ section /o "un.TypeGreek windows"
 	delete $INSTDIR\icon.ico
 	delete $INSTDIR\disabled_icon.ico
 
+	delete $INSTDIR\AutoHotKeyU32.exe
+	RMDir /r $INSTDIR\addons
+
 	delete $INSTDIR\diacritics.dat
 	delete $INSTDIR\version.dat
 
@@ -181,6 +189,8 @@ section /o "un.TypeGreek Windows Beta"
 
 	delete $INSTDIR\beta\icon.ico
 	delete $INSTDIR\beta\disabled_icon.ico
+
+	RMDir /r $INSTDIR\beta\addons
 
 	delete $INSTDIR\beta\diacritics.dat
 	delete $INSTDIR\beta\version.dat
