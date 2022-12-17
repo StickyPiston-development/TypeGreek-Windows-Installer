@@ -3,8 +3,8 @@
 !define DESCRIPTION "TypeGreek windows is an easy program to type ancient greek on your windows PC."
 
 !define VERSIONMAJOR 1
-!define VERSIONMINOR 7
-!define VERSIONBUILD 2
+!define VERSIONMINOR 8
+!define VERSIONBUILD 1
 
 !define HELPURL "https://github.com/StickyPiston-development/typegreek-windows/issues/new" # "Support Information" link
 !define UPDATEURL "https://stickypiston-development.github.io/typegreek-windows/download.html" # "Product Updates" link
@@ -104,7 +104,7 @@ section /o "TypeGreek Windows Beta"
 	createShortCut "$SMPROGRAMS\${COMPANYNAME}\TypeGreek Windows Beta (64 Bit).lnk" "$INSTDIR\beta\AutoHotKeyU64.exe" "typegreek_EN.ahk" "$INSTDIR\beta\icon.ico"
     createShortCut "$SMPROGRAMS\${COMPANYNAME}\TypeGreek Windows Beta (32 Bit).lnk" "$INSTDIR\beta\AutoHotKeyU32.exe" "typegreek_EN.ahk" "$INSTDIR\beta\icon.ico"
 	createShortCut "$DESKTOP\TypeGreek Windows Beta (64 Bit).lnk" "$INSTDIR\beta\AutoHotKeyU64.exe" "typegreek_EN.ahk" "$INSTDIR\beta\icon.ico"
-    createShortCut "$DESKTOP\TypeGreek Windows Beta (32 Bit).lnk" "$INSTDIR\beta\AutoHotKeyU64.exe" "typegreek_EN.ahk" "$INSTDIR\beta\icon.ico"
+    createShortCut "$DESKTOP\TypeGreek Windows Beta (32 Bit).lnk" "$INSTDIR\beta\AutoHotKeyU32.exe" "typegreek_EN.ahk" "$INSTDIR\beta\icon.ico"
 
 	WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME} Beta" "DisplayName" "${APPNAME} Beta ${VERSIONMAJOR}.${VERSIONMINOR}.${VERSIONBUILD}"
 	WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME} Beta" "UninstallString" "$\"$INSTDIR\uninstall_beta.exe$\""
