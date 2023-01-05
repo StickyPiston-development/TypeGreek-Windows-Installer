@@ -7,7 +7,7 @@
   },
   {
    "optionDest": "filenames",
-   "value": "C:/Users/anton/Documents/GitHub/TypeGreek-Windows-Installer/Main/PyInstaller/typegreek_updater.py"
+   "value": "C:/Users/anton/Documents/GitHub/typegreek/TypeGreek-Windows-Installer/Main/PyInstaller/install_addon.py"
   },
   {
    "optionDest": "onefile",
@@ -19,7 +19,7 @@
   },
   {
    "optionDest": "icon_file",
-   "value": "C:/Users/anton/Documents/GitHub/TypeGreek-Windows-Installer/Main/icon.ico"
+   "value": "C:/Users/anton/Documents/GitHub/typegreek/TypeGreek-Windows-Installer/Main/icon.ico"
   },
   {
    "optionDest": "ascii",

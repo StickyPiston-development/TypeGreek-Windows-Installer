@@ -4,7 +4,7 @@
 
 !define VERSIONMAJOR 1
 !define VERSIONMINOR 8
-!define VERSIONBUILD 1
+!define VERSIONBUILD 2
 
 !define HELPURL "https://github.com/StickyPiston-development/typegreek-windows/issues/new" # "Support Information" link
 !define UPDATEURL "https://stickypiston-development.github.io/typegreek-windows/download.html" # "Product Updates" link
@@ -27,7 +27,7 @@ Icon "icon.ico"
 outFile "TypeGreek-installer.exe"
 
 !include LogicLib.nsh
-
+!include fileassoc.nsh
 
 page license
 Page components
@@ -42,7 +42,9 @@ section "TypeGreek Windows"
     file "TypeGreek_NL.exe"
 
 	file "AutoHotKeyU32.exe"
+
 	CreateDirectory "$INSTDIR\addons"
+	file  "install_addon.exe"
 
 	file "icon.ico"
 	file "disabled_icon.ico"
@@ -74,6 +76,9 @@ section "TypeGreek Windows"
 	WriteRegDWORD HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "NoRepair" 1
 	# Set the INSTALLSIZE constant (!defined at the top of this script) so Add/Remove Programs can accurately report the size
 	WriteRegDWORD HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}" "EstimatedSize" ${INSTALLSIZE_MAIN}
+
+	# Addon filetype
+	!insertmacro APP_ASSOCIATE "tga" "typegreek.addon" "TypeGreek Addon file" "$INSTDIR\install_addon.exe,0" "Install addon" "$INSTDIR\install_addon.exe $\"%1$\""
 
 sectionEnd
 
@@ -141,6 +146,10 @@ UninstPage uninstConfirm
 UninstPage instfiles
 
 section /o "un.TypeGreek windows"
+
+	!insertmacro APP_UNASSOCIATE "tga" "typegreek.addon"
+	delete $INSTDIR\install_addon.exe
+
 	delete "$SMPROGRAMS\${COMPANYNAME}\TypeGreek Windows (EN).lnk"
     delete "$SMPROGRAMS\${COMPANYNAME}\TypeGreek Windows (NL).lnk"
 	delete "$DESKTOP\TypeGreek Windows (EN).lnk"
@@ -166,7 +175,7 @@ section /o "un.TypeGreek windows"
 	delete $INSTDIR\uninstall.exe
 
 	rmDir $INSTDIR
-
+	
 	DeleteRegKey HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${COMPANYNAME} ${APPNAME}"
 sectionEnd
 
